@@ -4,18 +4,14 @@
 
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 
-GPUS_PER_NODE=8
-# Change for multinode config
-MASTER_ADDR=localhost
-MASTER_PORT=6000
-NUM_NODES=1
-NODE_RANK=0
-WORLD_SIZE=$(($GPUS_PER_NODE*$NUM_NODES))
+GPUS_PER_NODE=1
+NUM_NODES=4
+WORLD_SIZE=$(($GPUS_PER_NODE * $NUM_NODES))
 
-CHECKPOINT_PATH=$1 #<Specify path>
-TENSORBOARD_LOGS_PATH=$2 #<Specify path>
-VOCAB_FILE=$3 #<Specify path to file>/bert-vocab.json
-DATA_PATH=$4 #<Specify path and file prefix>_text_document
+CHECKPOINT_PATH=$1
+TENSORBOARD_LOGS_PATH=$2
+VOCAB_FILE=$3
+DATA_PATH=$4
 
 DISTRIBUTED_ARGS=(
     --nproc_per_node $GPUS_PER_NODE 
@@ -49,8 +45,8 @@ TRAINING_ARGS=(
 )
 
 MODEL_PARALLEL_ARGS=(
-	--tensor-model-parallel-size 8 
-	--pipeline-model-parallel-size 16 
+	--tensor-model-parallel-size 4 
+	--pipeline-model-parallel-size 4 
 )
 
 DATA_ARGS=(
