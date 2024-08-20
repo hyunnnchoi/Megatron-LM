@@ -4,9 +4,9 @@
 
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 
-GPUS_PER_NODE=4  # 각 노드에서 4개의 GPU 사용
-NUM_NODES=2  # 2개의 노드 사용
-WORLD_SIZE=$(($GPUS_PER_NODE * $NUM_NODES))  # 전체 GPU의 수
+GPUS_PER_NODE=4
+NUM_NODES=2
+WORLD_SIZE=$(($GPUS_PER_NODE * $NUM_NODES))
 
 echo "GPUS_PER_NODE: $GPUS_PER_NODE"
 echo "NUM_NODES: $NUM_NODES"
@@ -20,6 +20,7 @@ DATA_PATH=$4
 DISTRIBUTED_ARGS=(
     --nproc_per_node $GPUS_PER_NODE 
     --nnodes $NUM_NODES 
+    --node_rank $NODE_RANK 
     --master_addr $MASTER_ADDR 
     --master_port $MASTER_PORT
 )
