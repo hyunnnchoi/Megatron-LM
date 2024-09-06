@@ -2,7 +2,6 @@
 
 # Runs the "340M" parameter model (Bert - Large)
 
-export CUDA_DEVICE_MAX_CONNECTIONS=1
 
 GPUS_PER_NODE=8
 # Change for multinode config
