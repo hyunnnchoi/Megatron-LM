@@ -18,7 +18,7 @@ VOCAB_FILE=$3
 DATA_PATH=$4
 
 export NODE_RANK=${NODE_RANK:-0} # Default to 0 if not set
-export MASTER_ADDR=${MASTER_ADDR:-"bert-4b-training-0.bert-4b-training.default.svc.cluster.local"}
+export MASTER_ADDR=163.152.20.207
 export MASTER_PORT=${MASTER_PORT:-"23456"}
 
 DISTRIBUTED_ARGS=(
